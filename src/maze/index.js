@@ -10,11 +10,11 @@ const {
 
 const width = window.innerWidth
 const height = window.innerHeight
-const wallWidth = 10
 const columns = 14
 const rows = 14
 const cellWidth = width / columns
 const cellHeight = height / rows
+const wallWidth = cellWidth / 10
 
 const engine = Engine.create()
 engine.world.gravity.y = 0
@@ -155,7 +155,7 @@ const ball = Bodies.circle(
     {
       label: 'ball',
       render: {
-        fillStyle: 'yellow'
+        fillStyle: 'orange'
       }
     }
 )
