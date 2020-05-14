@@ -191,6 +191,7 @@ Events.on(engine, 'collisionStart', event => {
           Body.setStatic(item, false)
         }
       })
+      document.querySelector('.winner').classList.remove('hidden')
     }
   })
 })
