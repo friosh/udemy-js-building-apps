@@ -1,0 +1,16 @@
+{
+  "name": "cli-app",
+  "version": "1.0.0",
+  "description": "Learning how to build cli app",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "git@github.com:friosh/udemy-js-building-apps.git",
+  "author": "friosh <friosh@mail.ru>",
+  "bin": {
+    "nls": "./index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chalk": "^4.0.0"
+  }
+}
