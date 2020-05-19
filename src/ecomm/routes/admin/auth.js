@@ -1,9 +1,9 @@
 const express = require('express')
-const usersRepo = require('../../repository/users')
+const usersRepo = require('../../repository/users.class')
 const router = express.Router()
 const signupTpl = require('../../views/admin/auth/signup')
 const signinTpl = require('../../views/admin/auth/signin')
-const { validationResult } = require('express-validator')
+const { handleErrors } = require('./middlewares')
 const {
   requireEmail,
   requirePassword,
@@ -19,15 +19,12 @@ router.get('/signup', (req, res) => {
 router.post(
   '/signup',
   [requireEmail, requirePassword, comparePasswords],
+  handleErrors(signupTpl),
   async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.send(signupTpl({ errors }))
-    }
     const {email, password, passwordConfirmation} = req.body
     const user = await usersRepo.create({email, password})
     req.session.userId = user.id
-    res.send('New user created')
+    res.redirect('/admin/products')
 })
 
 router.get('/signout', (req, res) => {
@@ -41,17 +38,13 @@ router.get('/signin', (req, res) => {
 
 router.post('/signin',
   [requiredEmailExist, requiredPasswordValid],
+  handleErrors(signinTpl),
   async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.send(signinTpl({ errors }))
-    }
-
     const {email} = req.body
     const user = await usersRepo.getOneBy({email})
 
     req.session.userId = user.id
-    res.send('Hello, user')
-})
+    res.redirect('/admin/products')
+  })
 
 module.exports = router

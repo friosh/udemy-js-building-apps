@@ -1,5 +1,5 @@
-const { check, validationResult } = require('express-validator')
-const usersRepo = require('../../repository/users')
+const { check } = require('express-validator')
+const usersRepo = require('../../repository/users.class')
 
 module.exports = {
   requireEmail: check('email').trim().normalizeEmail().isEmail().custom(async (email) => {
@@ -42,5 +42,14 @@ module.exports = {
       if (!validPassword) {
         throw new Error('Password is wrong')
       }
-    })
+    }),
+  requireTitle: check('title')
+    .trim()
+    .isLength({ min: 3, max: 40})
+    .withMessage('Must be between 5 and 40 characters'),
+  requirePrice: check('price')
+    .trim()
+    .toFloat()
+    .isFloat({min: 1})
+    .withMessage('Must be a number with value more then 1')
 }
