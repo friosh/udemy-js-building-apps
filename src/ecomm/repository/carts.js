@@ -1,5 +1,5 @@
-const RepositoryClass = require('./repository.class')
+const Repository = require('./repository')
 
-class CartsRepo extends RepositoryClass {}
+class CartsRepo extends Repository {}
 
 module.exports = new CartsRepo('carts.json')

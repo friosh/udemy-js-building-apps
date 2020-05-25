@@ -1,5 +1,5 @@
 const express = require('express')
-const productsRepo = require('../repository/products.class')
+const productsRepo = require('../repository/products')
 const productsTpl = require('../views/products')
 
 const router = express.Router()

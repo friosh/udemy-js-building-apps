@@ -1,5 +1,5 @@
 const { check } = require('express-validator')
-const usersRepo = require('../../repository/users.class')
+const usersRepo = require('../../repository/users')
 
 module.exports = {
   requireEmail: check('email').trim().normalizeEmail().isEmail().custom(async (email) => {

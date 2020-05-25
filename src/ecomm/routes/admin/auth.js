@@ -1,5 +1,5 @@
 const express = require('express')
-const usersRepo = require('../../repository/users.class')
+const usersRepo = require('../../repository/users')
 const router = express.Router()
 const signupTpl = require('../../views/admin/auth/signup')
 const signinTpl = require('../../views/admin/auth/signin')

@@ -1,11 +1,11 @@
 const fs = require('fs')
 const crypto = require('crypto')
 const util = require('util')
-const RepositoryClass = require('./repository')
+const Repository = require('./repository')
 
 const scrypt = util.promisify(crypto.scrypt)
 
-class Users extends RepositoryClass {
+class Users extends Repository {
   async create(attrs) {
     attrs.id = this.randomId()
 
